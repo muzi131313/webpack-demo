@@ -4,4 +4,4 @@
 ## 目录
 - [webpack](https://webpack.docschina.org/configuration/): 4.x
   - output
-    - [libraryExport](./examples/libraryExport/readme.md)
+    - [libraryExport](https://github.com/muzi131313/webpack-demo/blob/master/examples/webpack/libraryExport/readme.md)
