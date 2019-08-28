@@ -1,0 +1,27 @@
+{
+  "name": "commonplugin",
+  "version": "1.0.0",
+  "description": "webpack common plugin's usaged demo",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "webpack",
+    "common",
+    "plugin"
+  ],
+  "author": "roastwind",
+  "license": "MIT",
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "fs": "0.0.1-security",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15"
+  }
+}
