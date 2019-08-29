@@ -27,6 +27,9 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: 'Caching'
-    })
+    }),
+    // NamedModulesPlugin: 构建有点慢, 所以推荐使用HashedModuleIdsPlugin
+    // new webpack.NamedModulesPlugin(),
+    new webpack.HashedModuleIdsPlugin()
   ]
 }

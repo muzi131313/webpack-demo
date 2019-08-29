@@ -67,9 +67,14 @@
 - 添加一个print.js之后, 三个文件的hash都发生了变化
   - 每个[module.id](https://webpack.docschina.org/api/module-variables#module-id-commonjs-)都会基于解析顺序进行增量，即：解析顺序发生变化, id也会随之改变。
   - [require.resolve](https://lellansin.wordpress.com/2017/04/22/node-js-%E7%9A%84-require-resolve-%E7%AE%80%E4%BB%8B/): 拼接好路径之后, 检查路径是否存在; 不存在, 则抛错*Cannot find module './some-file.txt'*
+    - [require() 源码解读](http://www.ruanyifeng.com/blog/2015/05/require.html)
   - 详细变化
-    - main: 会随着自身的改变而改变
-    - vendor: 会随着`module.id`的变化而发生变化
-    - manifest: 会因为包含一个新模块，发生变化
+    - main: 会随着自身的改变而改变 => 符合预期
+    - vendor: 会随着`module.id`的变化而发生变化 => 不符合预期
+    - manifest: 会因为包含一个新模块，发生变化 => 符合预期
+    ![](https://user-images.githubusercontent.com/2398149/63925292-64f45380-ca7c-11e9-84db-2d36a63f59a4.png)
+- 使用[HashedModuleIdsPlugin](https://webpack.docschina.org/plugins/hashed-module-ids-plugin)可以解决vendor发生变化的问题
+  > HashedModuleIdsPlugin: 据模块的相对路径生成一个四位数的hash作为模块id
+    ![6-change](https://user-images.githubusercontent.com/2398149/63925581-e946d680-ca7c-11e9-94eb-ec343e4d186d.png)
 ## 参考文档
 - [缓存](https://webpack.docschina.org/guides/caching)
