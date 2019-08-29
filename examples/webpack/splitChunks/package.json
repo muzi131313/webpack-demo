@@ -1,0 +1,20 @@
+{
+  "name": "splitchunks",
+  "version": "1.0.0",
+  "description": "split chunks",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "webpack",
+    "splitChunks"
+  ],
+  "author": "roastwind",
+  "license": "MIT",
+  "devDependencies": {
+    "fs": "0.0.1-security",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
+  }
+}
