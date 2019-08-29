@@ -72,10 +72,10 @@
     - main: 会随着自身的改变而改变 => 符合预期
     - vendor: 会随着`module.id`的变化而发生变化 => 不符合预期
     - manifest: 会因为包含一个新模块，发生变化 => 符合预期
-    ![](https://user-images.githubusercontent.com/2398149/63925292-64f45380-ca7c-11e9-84db-2d36a63f59a4.png)
+    ![](http://ww1.sinaimg.cn/large/8c4687a3ly1g6gncsxbfjj21gs11s7jj.jpg)
 - 使用[HashedModuleIdsPlugin](https://webpack.docschina.org/plugins/hashed-module-ids-plugin)可以解决vendor发生变化的问题
   > HashedModuleIdsPlugin: 据模块的相对路径生成一个四位数的hash作为模块id
 
-    ![6-change](https://user-images.githubusercontent.com/2398149/63925581-e946d680-ca7c-11e9-94eb-ec343e4d186d.png)
+    ![](http://ww1.sinaimg.cn/large/8c4687a3ly1g6gndmsgj6j20p10jr0xb.jpg)
 ## 参考文档
 - [缓存](https://webpack.docschina.org/guides/caching)
