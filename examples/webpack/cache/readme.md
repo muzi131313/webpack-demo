@@ -64,5 +64,12 @@
   ```
   - 打包后内容
   ![](http://ww1.sinaimg.cn/large/8c4687a3ly1g6fki18qyyj21h40kkjzf.jpg)
+- 添加一个print.js之后, 三个文件的hash都发生了变化
+  - 每个[module.id](https://webpack.docschina.org/api/module-variables#module-id-commonjs-)都会基于解析顺序进行增量，即：解析顺序发生变化, id也会随之改变。
+  - [require.resolve](https://lellansin.wordpress.com/2017/04/22/node-js-%E7%9A%84-require-resolve-%E7%AE%80%E4%BB%8B/): 拼接好路径之后, 检查路径是否存在; 不存在, 则抛错*Cannot find module './some-file.txt'*
+  - 详细变化
+    - main: 会随着自身的改变而改变
+    - vendor: 会随着`module.id`的变化而发生变化
+    - manifest: 会因为包含一个新模块，发生变化
 ## 参考文档
 - [缓存](https://webpack.docschina.org/guides/caching)
