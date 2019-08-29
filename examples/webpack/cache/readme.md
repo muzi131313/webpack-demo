@@ -75,6 +75,7 @@
     ![](https://user-images.githubusercontent.com/2398149/63925292-64f45380-ca7c-11e9-84db-2d36a63f59a4.png)
 - 使用[HashedModuleIdsPlugin](https://webpack.docschina.org/plugins/hashed-module-ids-plugin)可以解决vendor发生变化的问题
   > HashedModuleIdsPlugin: 据模块的相对路径生成一个四位数的hash作为模块id
+
     ![6-change](https://user-images.githubusercontent.com/2398149/63925581-e946d680-ca7c-11e9-94eb-ec343e4d186d.png)
 ## 参考文档
 - [缓存](https://webpack.docschina.org/guides/caching)
