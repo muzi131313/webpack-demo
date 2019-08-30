@@ -1,8 +1,7 @@
 # splitChunks
-- [代码分离](https://webpack.docschina.org/guides/code-splitting/#bundle-analysis)
-  - `splitChunks`去重和分离chunks
-    > splitChunks是`commonPlugin`的替代配置选项
-  - `entry`: 手动分离代码
+- `splitChunks`去重和分离chunks
+  > splitChunks是`commonPlugin`的替代配置选项
+- `entry`: 手动分离代码
 
   ![](http://ww1.sinaimg.cn/large/8c4687a3ly1g6gp6mxok0j214o09yq5e.jpg)
 

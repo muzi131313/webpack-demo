@@ -1,3 +1,21 @@
+# 公共模块插件
+## 配置
+  ```
+  {
+    plugins: [
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendor',
+        minChunks: function(module){
+          return module.context && module.context.includes('node_modules');
+        }
+      }),
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'manifest',
+        minChunks: Infinity
+      }),
+    ];
+  }
+  ```
 ## 参考文档
 - [Webpack CommonsChunkPlugin](https://webpack.docschina.org/plugins/commons-chunk-plugin)
 - examples
