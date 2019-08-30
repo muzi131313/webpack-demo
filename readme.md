@@ -5,3 +5,5 @@
 - [webpack](https://webpack.docschina.org/configuration/): 4.x
   - output
     - [libraryExport](https://github.com/muzi131313/webpack-demo/blob/master/examples/webpack/libraryExport/readme.md)
+    - [cache](https://github.com/muzi131313/webpack-demo/tree/master/examples/webpack/cache)
+    - [splitChunks](https://github.com/muzi131313/webpack-demo/tree/master/examples/webpack/splitChunks)
