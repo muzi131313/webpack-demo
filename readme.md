@@ -4,6 +4,8 @@
 ## 目录
 - [webpack](https://webpack.docschina.org/configuration/): 4.x
   - output
-    - [libraryExport](https://github.com/muzi131313/webpack-demo/blob/master/examples/webpack/libraryExport/readme.md)
+    - [bundleAnalysis](https://github.com/muzi131313/webpack-demo/tree/master/examples/webpack/bundleAnalysis)
     - [cache](https://github.com/muzi131313/webpack-demo/tree/master/examples/webpack/cache)
+    - [commonPlugin](https://github.com/muzi131313/webpack-demo/tree/master/examples/webpack/commonPlugin)
+    - [libraryExport](https://github.com/muzi131313/webpack-demo/blob/master/examples/webpack/libraryExport)
     - [splitChunks](https://github.com/muzi131313/webpack-demo/tree/master/examples/webpack/splitChunks)
