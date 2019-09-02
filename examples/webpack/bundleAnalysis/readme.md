@@ -28,4 +28,4 @@
         - [webpack 4: import() and CommonJs](https://medium.com/webpack/webpack-4-import-and-commonjs-d619d626b655)
     - 依赖Promise api, 如果要在低版本浏览器使用, 需要引入[es6-promise](https://github.com/stefanpenner/es6-promise), 或者[promise-polyfill](https://github.com/taylorhakes/promise-polyfill)
       - 如果使用[async](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
-        - 需要[@babel/core](https://www.npmjs.com/package/@babel/core)、[@babel/preset-env](https://www.npmjs.com/package/@babel/preset-env)和[@babel/plugin-syntax-dynamic-import](https://babel.docschina.org/docs/en/babel-plugin-syntax-dynamic-import/#installation)
+        - 需要`Babel`预处理器和[@babel/plugin-syntax-dynamic-import](https://babel.docschina.org/docs/en/babel-plugin-syntax-dynamic-import/#installation)
