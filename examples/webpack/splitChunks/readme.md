@@ -74,3 +74,25 @@
         }
       }
       ```
+- 多个入口, 除了`node_modules`中的依赖包, 工具类共享代码单独打包成一个`chunk`的配置
+  ```
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+					chunks: "initial",
+					minChunks: 2, // minChunks必须设置为2, 每个入口至少产生两个chunk
+					maxInitialRequests: 5, // The default limit is too small to showcase the effect
+					minSize: 0 // This is example is too small to create commons chunks
+				},
+				vendor: {
+					test: /node_modules/,
+					chunks: "initial",
+					name: "vendor",
+					priority: 10,
+					enforce: true
+				}
+      }
+    }
+  },
+  ```
