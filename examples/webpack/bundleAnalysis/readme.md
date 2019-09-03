@@ -26,6 +26,7 @@
         ![dynamic-import-2.png](http://ww1.sinaimg.cn/large/8c4687a3ly1g6l8f1vk6kj21y41284c6.jpg)
       - *webpack v4*开始, 解析`CommonJS`, 会创建一个人工命名空间, 原因如下:
         - [webpack 4: import() and CommonJs](https://medium.com/webpack/webpack-4-import-and-commonjs-d619d626b655)
+        - [webpack 4: import() and CommonJs(中文翻译)](https://github.com/WormGirl/blog/blob/master/webpack%204%20import()%20and%20CommonJs.md)
     - 依赖Promise api, 如果要在低版本浏览器使用, 需要引入[es6-promise](https://github.com/stefanpenner/es6-promise), 或者[promise-polyfill](https://github.com/taylorhakes/promise-polyfill)
       - 如果使用[async](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
         - 需要`Babel`预处理器和[@babel/plugin-syntax-dynamic-import](https://babel.docschina.org/docs/en/babel-plugin-syntax-dynamic-import/#installation)
