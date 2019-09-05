@@ -9,5 +9,5 @@
     - [commonPlugin](https://github.com/muzi131313/webpack-demo/tree/master/examples/webpack/commonPlugin)
     - [libraryExport](https://github.com/muzi131313/webpack-demo/blob/master/examples/webpack/libraryExport)
     - [splitChunks](https://github.com/muzi131313/webpack-demo/tree/master/examples/webpack/splitChunks)
-- [es6](https://github.com/muzi131313/webpack-demo/blob/master/examples/es6/readme.md)
-- [css](https://github.com/muzi131313/webpack-demo/blob/master/examples/css/readme.md)
+- [es6](https://github.com/muzi131313/webpack-demo/blob/master/examples/es6/readme.md): es6转换es5
+- [css](https://github.com/muzi131313/webpack-demo/blob/master/examples/css/readme.md): css的处理: sass转换、css抽离、css兼容
