@@ -77,5 +77,71 @@
   > HashedModuleIdsPlugin: 据模块的相对路径生成一个四位数的hash作为模块id
 
     ![](http://ww1.sinaimg.cn/large/8c4687a3ly1g6gndmsgj6j20p10jr0xb.jpg)
+## 问题
+- hash的迷惑
+  - 不同hash区别
+    - `hash`: 基于整个项目计算, 使用同一hash值, 有任何文件发生变化, 则整个项目hash值会发生变更
+    - `chunkhash`: 根据不同的入口文件, 进行依赖文件分析, 构建对应chunk、生成hash。
+      > 生产模式下, 对公共依赖库进行单独打包, 公共依赖不发生改版, 对应chunk就不会变更。
+    - `contenthash`: 根据内容生成对应的hash
+  - 结论
+    - 如果有`css`引用的话, 则使用`contenthash`
+- [new webpack.HashedModuleIdsPlugin()](https://webpack.docschina.org/plugins/hashed-module-ids-plugin)和`chunkhash`区别
+  - HashedModuleIdsPlugin
+    - 根据模块的相对路径生成一个四位数的hash作为模块id
+  - [output.filename chunkhash](https://webpack.docschina.org/configuration/output/#output-filename)
+    - 基于每个 chunk 内容的 hash
+  - 不同点
+    - `chunkhash`解决生成文件名问题
+    - `HashedModuleIdsPlugin()`解决模块id问题
+  - 结论: 两者都需要
+- `runtimeChunk`: 管理模块之间依赖关系(等同于之前`manifest`)
+  > 由于经常变动, 单独为之增加一个http请求不划算, 所以配置之后，内联到`index.html`中
+  - 使用[inline-manifest-webpack-plugin](https://github.com/szrenwei/inline-manifest-webpack-plugin)内联
+    ```
+    const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin')
+    module.exports = {
+        optimization: {
+            runtimeChunk: {
+              name: 'manifest'
+            },
+        },
+        plugins: [
+            new InlineManifestWebpackPlugin('manifest')
+        ]
+    }
+    ```
+- 公共模块和公共代码
+  ```
+  module.exports = {
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          // 公共代码
+          commons: {
+            chunks: 'initial',
+            name: 'commons',
+            minChunks: 2,
+            maxInitialRequests: 5,
+            minSize: 0
+          },
+          // 抽离第三插件
+          vendor: {
+            test: /node_modules/,
+            chunks: 'initial',
+            name: 'vendor',
+            priority: 10
+          }
+        }
+      }
+    }
+  }
+  ```
 ## 参考文档
 - [缓存](https://webpack.docschina.org/guides/caching)
+- [webpack中的hash、chunkhash、contenthash区别](https://juejin.im/post/5a4502be6fb9a0450d1162ed)
+- [Webpack 4 配置最佳实践](https://zxc0328.github.io/2018/06/19/webpack-4-config-best-practices/)
+- [手摸手，带你用合理的姿势使用webpack4（下）](https://segmentfault.com/a/1190000015919928#articleHeader4)
+- [upgrade-to-webpack-4](https://dev.to/flexdinesh/upgrade-to-webpack-4---5bc5)
+- [webpack4配置笔记](https://www.my-fe.pub/post/webpack-4-basic-config-note.html)
+- [webpack4.0打包优化策略(三)](https://juejin.im/post/5ac76a8f51882555677ecc06)
