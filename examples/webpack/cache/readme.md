@@ -35,7 +35,7 @@
   ```
   - 打包后内容
   ![](http://ww1.sinaimg.cn/large/8c4687a3ly1g6fkhj0sx9j21ai0lmdl6.jpg)
-- [runtimeChunk](https://webpack.docschina.org/configuration/optimization/#optimization-runtimechunk): 生成一个`runtime.[contenthash].js`的运行时文件
+- [runtimeChunk](https://webpack.docschina.org/configuration/optimization/#optimization-runtimechunk): 生成一个所有chunk共享的的运行时文件
   ```
   module.exports = {
     optimization: {
@@ -95,7 +95,7 @@
     - `chunkhash`解决生成文件名问题
     - `HashedModuleIdsPlugin()`解决模块id问题
   - 结论: 两者都需要
-- `runtimeChunk`: 管理模块之间依赖关系(等同于之前`manifest`)
+- `runtimeChunk`: 所有chunk的共享运行时文件(管理模块之间依赖)
   > 由于经常变动, 单独为之增加一个http请求不划算, 所以配置之后，内联到`index.html`中
   - 使用[inline-manifest-webpack-plugin](https://github.com/szrenwei/inline-manifest-webpack-plugin)内联
     ```
@@ -111,6 +111,22 @@
         ]
     }
     ```
+
+- 关于`manifest`
+  - html标签的`manifest`属性: [离线缓存](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Using_the_application_cache)(已废弃)
+  - [PWA](https://developer.mozilla.org/zh-CN/docs/Web/Manifest): 将Web应用程序安装到设备的主屏幕
+  - webpack中[webpack-manifest-plugin](https://www.npmjs.com/package/webpack-manifest-plugin)插件打包出来的`manifest.json`文件, 生成一份资源清单
+  - webpack中[dll]()打包，输出`manifest.json`, 用来分析已打包过的文件，优化速度和大小
+  - webpack中[manifest](https://www.webpackjs.com/concepts/manifest/)运行时代码
+    ```
+    optimization: {
+      runtimeChunk: true
+    }
+    ```
+- webpack中的manifest
+  - [核心理念介绍](https://webpack.docschina.org/concepts/manifest/)
+  - [output-manifest](https://webpack.docschina.org/guides/output-management/#manifest)
+    - 将manifest数据生成一个易用的json文件: [WebpackManifestPlugin](https://github.com/danethurber/webpack-manifest-plugin)
 - 公共模块和公共代码
   ```
   module.exports = {
@@ -145,3 +161,5 @@
 - [upgrade-to-webpack-4](https://dev.to/flexdinesh/upgrade-to-webpack-4---5bc5)
 - [webpack4配置笔记](https://www.my-fe.pub/post/webpack-4-basic-config-note.html)
 - [webpack4.0打包优化策略(三)](https://juejin.im/post/5ac76a8f51882555677ecc06)
+- [傻傻分不清的Manifest](https://anata.me/2019/06/04/傻傻分不清的Manifest/)
+- [Long term caching using Webpack records](https://medium.com/@songawee/long-term-caching-using-webpack-records-9ed9737d96f2)
