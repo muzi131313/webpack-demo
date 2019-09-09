@@ -61,6 +61,7 @@
     ]
   }
   ```
+## 优化loader和减少搜索范围的优化
 - 构建优化
   - 优化loader配置, [详细选项](https://webpack.docschina.org/loaders/babel-loader/#%E9%80%89%E9%A1%B9)
     - 开启`babel-loader`缓存, 设置`exclude`、`include`, 加快文件查找速度
@@ -80,7 +81,12 @@
     ![after.png](http://ww1.sinaimg.cn/large/8c4687a3ly1g6t58037gej21c40fgwiv.jpg)
   - 构建使用缓存后
     ![after-babel-cache.png](http://ww1.sinaimg.cn/large/8c4687a3ly1g6t58fhsv4j21co0f8q7b.jpg)
+## dll加速打包的优化
+
 ## 问题
 - `Module not found: Error: Can't resolve 'core-js/modules/es.function.name'`
   - 解决方案: `npm i core-js@3 -s`
   - [core-js#issues-500](https://github.com/zloirock/core-js/issues/500)
+
+## 参考链接
+- [dll在vuecli3中的配置](https://juejin.im/post/5d1c05e4f265da1b8333a89f)

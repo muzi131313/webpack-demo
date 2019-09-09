@@ -89,11 +89,19 @@ module.exports = {
       template: resolve('./src/template/index.html')
     }),
     new InlineManifestWebpackPlugin('manifest'),
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      manifest: require('./dist/vue.manifest.json'),
+      name: resolve('./dist/vue.dll.js'),
+      sourceType: 'commonjs2'
+    }),
     ...(
       isProd
       ? [
         new webpack.HashedModuleIdsPlugin(),
-        new CleanWebpackPlugin(),
+        new CleanWebpackPlugin({
+
+        }),
         new MiniCssExtractPlugin({
           filename: 'static/style/[name].[contenthash].css'
         })
