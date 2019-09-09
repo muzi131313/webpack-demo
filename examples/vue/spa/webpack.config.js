@@ -20,13 +20,16 @@ module.exports = {
     path: resolve('./dist')
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.js', '.vue'],
     alias: {
-      'vue$': resolve('node_modules/vue/dist/vue.min.js'),
+      'vue$': resolve('./node_modules/vue/dist/vue.min.js'),
       '@': resolve('./src')
-    }
+    },
+    modules: [ resolve('node_modules') ],
+    mainFields: [ 'main' ]
   },
   optimization: {
+    // 管理模块之间依赖关系
     runtimeChunk: {
       name: 'manifest'
     },
@@ -51,6 +54,7 @@ module.exports = {
     }
   },
   module: {
+    noParse: [ /vue\.min\.js$/ ],
     rules: [
       {
         test: /\.vue$/,
@@ -58,7 +62,9 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        use: [ 'babel-loader' ],
+        // babel-loader增加缓存
+        use: [ 'babel-loader?cacheDirectory' ],
+        exclude: /node_modules/,
         include: resolve('./src')
       },
       {
@@ -71,7 +77,8 @@ module.exports = {
           'postcss-loader',
           'sass-loader'
         ],
-        include: resolve('./src')
+        include: resolve('./src'),
+        exclude: /node_modules/
       }
     ]
   },
