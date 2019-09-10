@@ -100,7 +100,8 @@ module.exports = {
       ? [
         new webpack.HashedModuleIdsPlugin(),
         new CleanWebpackPlugin({
-
+          cleanOnceBeforeBuildPatterns: ['static'],
+          cleanAfterEveryBuildPatterns: []
         }),
         new MiniCssExtractPlugin({
           filename: 'static/style/[name].[contenthash].css'
