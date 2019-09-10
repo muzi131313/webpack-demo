@@ -82,7 +82,13 @@
   - 构建使用缓存后
     ![after-babel-cache.png](http://ww1.sinaimg.cn/large/8c4687a3ly1g6t58fhsv4j21co0f8q7b.jpg)
 ## dll加速打包的优化
-
+  - 对第三方应用进行manifest打包，避免重复打包，提升效率
+    ```
+    npm run dll
+    npm run build
+    ```
+  - 提升了800ms左右
+    ![after-dll.png](http://ww1.sinaimg.cn/large/8c4687a3ly1g6u754umdmj21lo0f8tgb.jpg)
 ## 问题
 - `Module not found: Error: Can't resolve 'core-js/modules/es.function.name'`
   - 解决方案: `npm i core-js@3 -s`
