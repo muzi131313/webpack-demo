@@ -87,8 +87,37 @@
     npm run dll
     npm run build
     ```
+  - 更改`build`配置，避免清掉dll打包的输出文件
+    ```
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: ['static'],
+      cleanAfterEveryBuildPatterns: []
+    })
+    ```
   - 提升了800ms左右
     ![after-dll.png](http://ww1.sinaimg.cn/large/8c4687a3ly1g6u754umdmj21lo0f8tgb.jpg)
+## [HappyPack](https://github.com/amireh/happypack)多核打包
+  - 安装依赖[thread-loader](https://www.npmjs.com/package/thread-loader)
+    > 没有选择[happypack](https://github.com/amireh/happypack), 是因为其破坏了loader的配置, 不是很友好
+    ```
+    npm install thread-loader
+    ```
+  - 配置
+    ```
+    {
+      test: /\.vue$/,
+      use: [
+        'thread-loader',
+        'vue-loader'
+      ]
+    },
+    ```
+  - 注意
+    - 如果代码量不是很大, 引入则会增加打包的时间, 因为本身打包时间就不是很长, 还要增加分包的时间, 所以会延长
+    - 加多线程前
+      ![thread-before.png](http://ww1.sinaimg.cn/large/8c4687a3ly1g6uet1u03rj227y0ju4qp.jpg)
+    - 加多线程后
+      ![thread-after.png](http://ww1.sinaimg.cn/large/8c4687a3ly1g6uetlfttfj227g0ji4qp.jpg)
 ## 问题
 - `Module not found: Error: Can't resolve 'core-js/modules/es.function.name'`
   - 解决方案: `npm i core-js@3 -s`

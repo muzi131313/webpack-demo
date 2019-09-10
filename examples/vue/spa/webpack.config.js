@@ -58,12 +58,20 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        use: [
+          'thread-loader',
+          'vue-loader'
+        ],
+        exclude: /node_modules/,
+        include: resolve('./src')
       },
       {
         test: /\.js$/,
         // babel-loader增加缓存
-        use: [ 'babel-loader?cacheDirectory' ],
+        use: [
+          'thread-loader',
+          'babel-loader?cacheDirectory'
+        ],
         exclude: /node_modules/,
         include: resolve('./src')
       },
@@ -72,6 +80,7 @@ module.exports = {
         test: /\.scss$/,
         // SCSS 文件的处理顺序为先 sass-loader 再 css-loader 再 style-loader
         use: [
+          // 'thread-loader',
           isProd ? MiniCssExtractPlugin.loader : 'style-loader',
           { loader: 'css-loader', options: { importLoaders: 2 } },
           'postcss-loader',
