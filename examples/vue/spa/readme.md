@@ -118,6 +118,29 @@
       ![thread-before.png](http://ww1.sinaimg.cn/large/8c4687a3ly1g6uet1u03rj227y0ju4qp.jpg)
     - 加多线程后
       ![thread-after.png](http://ww1.sinaimg.cn/large/8c4687a3ly1g6uetlfttfj227g0ji4qp.jpg)
+- [uglifyjs-webpack-plugin](https://github.com/webpack-contrib/uglifyjs-webpack-plugin): js代码压缩
+  - [uglifyOptions](https://github.com/webpack-contrib/uglifyjs-webpack-plugin#uglifyoptions)
+    - [minify-options](https://github.com/mishoo/UglifyJS2#minify-options)
+      - [compress-options](https://github.com/mishoo/UglifyJS2#compress-options)
+  - [cache](https://github.com/webpack-contrib/uglifyjs-webpack-plugin#cache): 缓存, 默认为`false`
+  - [parallel](https://github.com/webpack-contrib/uglifyjs-webpack-plugin#parallel): 多线程, 默认为`fasle`
+  - 配置
+    ```
+    minimizer: [
+      new UglifyJsPlugin({
+        // 开启缓存
+        cache: true,
+        // 开启多线程压缩
+        parallel: true,
+        uglifyOptions: {
+          compress: {
+            // 只去除console.log
+            pure_funcs: [ 'console.log' ]
+          }
+        }
+      })
+    ]
+    ```
 ## 问题
 - `Module not found: Error: Can't resolve 'core-js/modules/es.function.name'`
   - 解决方案: `npm i core-js@3 -s`

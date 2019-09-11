@@ -5,9 +5,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 const env = process.env.NODE_ENV
 const isProd = env === 'production'
+const cpusLen = require('os').cpus().length
 
 const resolve = _path => path.resolve(__dirname, _path)
 
@@ -29,6 +32,27 @@ module.exports = {
     mainFields: [ 'main' ]
   },
   optimization: {
+    minimizer: [
+      new OptimizeCSSAssetsPlugin(),
+      new UglifyJsPlugin({
+        // 开启缓存
+        cache: true,
+        // 开启多线程压缩
+        parallel: cpusLen,
+        uglifyOptions: {
+          compress: {
+            // 全部去除console的配置
+            // drop_console: true
+            // 只去除console.log的配置
+            drop_console: false,
+            pure_funcs: [ 'console.log' ]
+          },
+          output: {
+            beautify: false
+          }
+        }
+      })
+    ],
     // 管理模块之间依赖关系
     runtimeChunk: {
       name: 'manifest'
@@ -59,7 +83,7 @@ module.exports = {
       {
         test: /\.vue$/,
         use: [
-          'thread-loader',
+          // 'thread-loader',
           'vue-loader'
         ],
         exclude: /node_modules/,
@@ -69,7 +93,7 @@ module.exports = {
         test: /\.js$/,
         // babel-loader增加缓存
         use: [
-          'thread-loader',
+          // 'thread-loader',
           'babel-loader?cacheDirectory'
         ],
         exclude: /node_modules/,
