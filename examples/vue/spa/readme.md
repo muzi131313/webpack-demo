@@ -82,6 +82,30 @@
   - 构建使用缓存后
     ![after-babel-cache.png](http://ww1.sinaimg.cn/large/8c4687a3ly1g6t58fhsv4j21co0f8q7b.jpg)
 ## dll加速打包的优化
+  - dll配置
+    > `context`一定要配置
+
+    ```
+    const path = require('path')
+    module.exports = {
+      mode: 'production',
+      entry: {
+        vue: [ 'vue/dist/vue.runtime.esm.js', 'vue-router', 'vuex' ]
+      },
+      output: {
+        filename: '[name].dll.js',
+        path: path.resolve(__dirname, 'dist'),
+        library: '_dll_[name]'
+      },
+      plugins: [
+        new webpack.DllPlugin({
+          context: __dirname,
+          name: '_dll_[name]',
+          path: path.resolve(__dirname, './dist', '[name].manifest.json')
+        })
+      ]
+    }
+    ```
   - 对第三方应用进行manifest打包，避免重复打包，提升效率
     ```
     npm run dll
@@ -94,6 +118,35 @@
       cleanAfterEveryBuildPatterns: []
     })
     ```
+  - dll引入
+    - 引入`vue.dll.js`
+      - 更改`src/template/index.html`模板, 手动引入
+        ```
+        <script src="./vue.dll.js"></script>
+        ```
+      - 使用插件引入, [详细配置](https://github.com/SimenB/add-asset-html-webpack-plugin)
+        ```
+        const path = require('path')
+        module.exports = {
+          plugins: [
+            new AddAssetHtmlPlugin({
+              filepath: path.resolve(__dirname, 'dist/dll/vue.dll.js'),
+              publicPath: 'dll'
+            })
+          ]
+        }
+        ```
+    - reference引入
+      ```
+      module.exports = {
+          plugins: [
+            new webpack.DllReferencePlugin({
+              context: __dirname,
+              manifest: require('./dist/dll/vue.manifest.json')
+            })
+          ]
+      }
+      ```
   - 提升了800ms左右
     ![after-dll.png](http://ww1.sinaimg.cn/large/8c4687a3ly1g6u754umdmj21lo0f8tgb.jpg)
 ## [HappyPack](https://github.com/amireh/happypack)多核打包
@@ -148,3 +201,5 @@
 
 ## 参考链接
 - [dll在vuecli3中的配置](https://juejin.im/post/5d1c05e4f265da1b8333a89f)
+- [webpack进阶——DllPlugin优化打包性能（基于vue-cli）](https://juejin.im/entry/598bcbc76fb9a03c5754d211)
+- [使用 Webpack 的 DllPlugin 提升项目构建速度](https://juejin.im/post/5c665c6151882562986ce988)
