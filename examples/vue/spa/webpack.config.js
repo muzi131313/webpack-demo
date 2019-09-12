@@ -4,10 +4,10 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
+const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin')
 
 const env = process.env.NODE_ENV
 const isProd = env === 'production'
@@ -15,18 +15,11 @@ const cpusLen = require('os').cpus().length
 
 const resolve = _path => path.resolve(__dirname, _path)
 
-// const cdn = {
-//   css: isProd ? '//css.cdn.com/id' : '/',
-//   js: isProd ? '//js.cdn.com/id' : '/',
-//   img: isProd ? '//img.cdn.com/id' : '/'
-// }
+// 有cdn
+const cdn = isProd ? '//static.cdn.com/id' : '/'
 
 // 没有cdn
-const cdn = {
-  css: isProd ? '/' : '/',
-  js: isProd ? '/' : '/',
-  img: isProd ? '/' : '/'
-}
+// const cdn = '/'
 
 // 使用set做碰撞试验
 const seen = new Set()
@@ -34,12 +27,14 @@ const nameLength = 4
 
 module.exports = {
   mode: isProd ? 'production' : 'development',
-  entry: './src/main.js',
+  entry: {
+    main: './src/main.js'
+  },
   devtool: !isProd && '#cheap-module-source-map',
   output: {
     filename: isProd ? 'static/script/[name].[chunkhash].js' : 'static/script/[name].[hash].js',
     path: resolve('./dist'),
-    publicPath: cdn.js
+    publicPath: cdn
   },
   resolve: {
     extensions: ['.js', '.vue'],
@@ -130,11 +125,17 @@ module.exports = {
             options: isProd
               ? {
                 // CSS中导入的资源(例如图片)路径
-                publicPath: cdn.img
+                // 引入资源路径, 会相对css出现相对问题
+                publicPath: '../../'
               }
               : {}
           },
-          { loader: 'css-loader', options: { importLoaders: 2 } },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2
+            }
+          },
           'postcss-loader',
           'sass-loader'
         ],
@@ -148,6 +149,8 @@ module.exports = {
           name: '[path][name].[ext]',
           context: 'src', // prevent display of src/ in filename
         },
+        include: resolve('./src'),
+        exclude: /node_modules/
       },
       {
         test: /\.(woff(2)?|eot|ttf|otf|)$/,
@@ -157,27 +160,29 @@ module.exports = {
           name: '[path][name].[ext]',
           context: 'src', // prevent display of src/ in filename
         },
+        include: resolve('./src'),
+        exclude: /node_modules/
       }
     ]
   },
   plugins: [
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
-      title: 'css and postcss',
+      title: 'vue spa',
       template: resolve('./src/template/index.html')
     }),
     // manifest
     new InlineManifestWebpackPlugin('manifest'),
-    // dll
-    new webpack.DllReferencePlugin({
-      context: __dirname,
-      manifest: require('./dist/dll/vue.manifest.json')
-      // name: '_dll_vue'
-    }),
     // 添加dll.js到html中去
     new AddAssetHtmlPlugin({
-      filepath: resolve('dist/dll/vue.dll.js'),
-      publicPath: 'dll'
+      filepath: resolve('./dist/dll/vue.dll.js'),
+      publicPath: `${cdn}/dll`
+    }),
+    // dll
+    new webpack.DllReferencePlugin({
+      context: resolve(__dirname),
+      manifest: require('./dist/dll/vue.manifest.json')
+      // name: '_dll_vue'
     }),
     ...(
       isProd
