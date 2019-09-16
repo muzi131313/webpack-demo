@@ -16,10 +16,10 @@ const cpusLen = require('os').cpus().length
 const resolve = _path => path.resolve(__dirname, _path)
 
 // 有cdn
-const cdn = isProd ? '//static.cdn.com/id' : '/'
+// const cdn = isProd ? '//static.cdn.com/id' : '/'
 
 // 没有cdn
-// const cdn = '/'
+const cdn = '/'
 
 // 使用set做碰撞试验
 const seen = new Set()
