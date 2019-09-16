@@ -169,7 +169,10 @@ module.exports = {
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       title: 'vue spa',
-      template: resolve('./src/template/index.html')
+      template: resolve('./src/template/index.html'),
+      scripts: [
+        'https://cdn.bootcss.com/jquery/3.4.1/jquery.js'
+      ]
     }),
     // manifest
     new InlineManifestWebpackPlugin('manifest'),
