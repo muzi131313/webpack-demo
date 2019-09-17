@@ -1,0 +1,25 @@
+{
+  "name": "treeshaking",
+  "version": "1.0.0",
+  "description": "webpack treeshaking example",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-dev-server",
+    "build": "cross-env NODE_ENV=production webpack --display-used-exports",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "webpack",
+    "treeShaking"
+  ],
+  "author": "roastwind",
+  "license": "MIT",
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "cross-env": "^5.2.1",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.8",
+    "webpack-dev-server": "^3.8.1"
+  }
+}

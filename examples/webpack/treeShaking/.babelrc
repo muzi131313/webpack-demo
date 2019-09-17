@@ -1,0 +1,9 @@
+{
+  "presets": [
+    ["@babel/env", {
+      // https://babeljs.io/docs/en/babel-preset-env#modules
+      // 不转换
+      "modules": false
+    }]
+  ]
+}
