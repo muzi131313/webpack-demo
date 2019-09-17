@@ -4,11 +4,12 @@
 ## 目录
 - [webpack](https://webpack.docschina.org/configuration/): 4.x
   - output
-    - [bundleAnalysis](https://github.com/muzi131313/webpack-demo/tree/master/examples/webpack/bundleAnalysis)
-    - [cache](https://github.com/muzi131313/webpack-demo/tree/master/examples/webpack/cache)
-    - [commonPlugin](https://github.com/muzi131313/webpack-demo/tree/master/examples/webpack/commonPlugin)
-    - [libraryExport](https://github.com/muzi131313/webpack-demo/blob/master/examples/webpack/libraryExport)
-    - [splitChunks](https://github.com/muzi131313/webpack-demo/tree/master/examples/webpack/splitChunks)
+    - [bundleAnalysis](https://github.com/muzi131313/webpack-demo/tree/master/examples/webpack/bundleAnalysis/readme.md)
+    - [cache](https://github.com/muzi131313/webpack-demo/tree/master/examples/webpack/cache/readme.md)
+    - [commonPlugin](https://github.com/muzi131313/webpack-demo/tree/master/examples/webpack/commonPlugin/readme.md)
+    - [libraryExport](https://github.com/muzi131313/webpack-demo/blob/master/examples/webpack/libraryExport/readme.md)
+    - [splitChunks](https://github.com/muzi131313/webpack-demo/tree/master/examples/webpack/splitChunks/readme.md)
+    - [treeShaking](https://github.com/muzi131313/webpack-demo/blob/master/examples/webpack/treeShaking/readme.md)
 - vue
   - [spa](https://github.com/muzi131313/webpack-demo/blob/master/examples/vue/spa/readme.md)
     - [开启loader缓存，减少文件查找范围](https://github.com/muzi131313/webpack-demo/blob/master/examples/vue/spa/readme.md#%E4%BC%98%E5%8C%96loader%E5%92%8C%E5%87%8F%E5%B0%91%E6%90%9C%E7%B4%A2%E8%8C%83%E5%9B%B4%E7%9A%84%E4%BC%98%E5%8C%96)
