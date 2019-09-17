@@ -5,13 +5,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+// const TerserWebpackPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
 const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin')
 
+const cpusLen = require('os').cpus().length
+
 const env = process.env.NODE_ENV
 const isProd = env === 'production'
-const cpusLen = require('os').cpus().length
 
 const resolve = _path => path.resolve(__dirname, _path)
 
@@ -39,7 +41,10 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue'],
     alias: {
-      'vue$': resolve('./node_modules/vue/dist/vue.runtime.esm.js'),
+      // 开发模式下为es6版本
+      'vue$': isProd
+        ? resolve('./node_modules/vue/dist/vue.min.js')
+        : resolve('./node_modules/vue/dist/vue.runtime.esm.js'),
       '@': resolve('./src')
     },
     modules: [ resolve('node_modules') ],
@@ -48,6 +53,24 @@ module.exports = {
   optimization: {
     minimizer: [
       new OptimizeCSSAssetsPlugin(),
+      // new TerserWebpackPlugin({
+      //   // 开启缓存
+      //   cache: true,
+      //   // 开启多线程压缩
+      //   parallel: cpusLen,
+      //   terserOptions: {
+      //     compress: {
+      //       // 全部去除console的配置
+      //       // drop_console: true
+      //       // 只去除console.log的配置
+      //       drop_console: false,
+      //       pure_funcs: [ 'console.log' ]
+      //     },
+      //     output: {
+      //       beautify: false
+      //     }
+      //   }
+      // })
       new UglifyJsPlugin({
         // 开启缓存
         cache: true,
@@ -87,13 +110,12 @@ module.exports = {
           test: /node_modules/,
           chunks: 'initial',
           name: 'vendor',
-          priority:10
+          priority: 10
         }
       }
     }
   },
   module: {
-    noParse: [ /vue\.runtime\.esm\.js$/ ],
     rules: [
       {
         test: /\.vue$/,
@@ -176,17 +198,6 @@ module.exports = {
     }),
     // manifest
     new InlineManifestWebpackPlugin('manifest'),
-    // 添加dll.js到html中去
-    new AddAssetHtmlPlugin({
-      filepath: resolve('./dist/dll/vue.dll.js'),
-      publicPath: `${cdn}/dll`
-    }),
-    // dll
-    new webpack.DllReferencePlugin({
-      context: resolve(__dirname),
-      manifest: require('./dist/dll/vue.manifest.json')
-      // name: '_dll_vue'
-    }),
     ...(
       isProd
       // 生产打包模式下的plugins
@@ -223,6 +234,17 @@ module.exports = {
       ]
       // 开发打包模式下的plugins
       : [
+        // 添加dll.js到html中去
+        new AddAssetHtmlPlugin({
+          filepath: resolve('./dist/dll/vue.dll.js'),
+          publicPath: `${cdn}/dll`
+        }),
+        // dll
+        new webpack.DllReferencePlugin({
+          context: resolve(__dirname),
+          manifest: require('./dist/dll/vue.manifest.json')
+          // name: '_dll_vue'
+        }),
         // 固定moduleId
         new webpack.NamedModulesPlugin()
       ]

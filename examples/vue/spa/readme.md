@@ -81,7 +81,7 @@
     ![after.png](http://ww1.sinaimg.cn/large/8c4687a3ly1g6t58037gej21c40fgwiv.jpg)
   - 构建使用缓存后
     ![after-babel-cache.png](http://ww1.sinaimg.cn/large/8c4687a3ly1g6t58fhsv4j21co0f8q7b.jpg)
-## dll加速打包的优化
+## dll加速打包的优化: 开发模式下加快打包速度
   - dll配置
     > `context`一定要配置
 
