@@ -48,6 +48,7 @@ module.exports = {
       '@': resolve('./src')
     },
     modules: [ resolve('node_modules') ],
+    // mainFields: [ 'jsnext:main', 'browser', 'main' ]
     mainFields: [ 'main' ]
   },
   optimization: {
