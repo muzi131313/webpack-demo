@@ -48,8 +48,8 @@ module.exports = {
       '@': resolve('./src')
     },
     modules: [ resolve('node_modules') ],
-    // mainFields: [ 'jsnext:main', 'browser', 'main' ]
-    mainFields: [ 'main' ]
+    mainFields: [ 'jsnext:main', 'browser', 'main' ]
+    // mainFields: [ 'main' ]
   },
   optimization: {
     minimizer: [
@@ -115,6 +115,12 @@ module.exports = {
         }
       }
     }
+  },
+  stats: {
+    // Examine all modules
+    maxModules: Infinity,
+    // Display bailout reasons
+    optimizationBailout: true
   },
   module: {
     rules: [
@@ -199,6 +205,7 @@ module.exports = {
     }),
     // manifest
     new InlineManifestWebpackPlugin('manifest'),
+    new webpack.optimize.ModuleConcatenationPlugin(),
     ...(
       isProd
       // 生产打包模式下的plugins
