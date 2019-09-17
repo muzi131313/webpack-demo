@@ -118,9 +118,9 @@ module.exports = {
   },
   stats: {
     // Examine all modules
-    maxModules: Infinity,
+    // maxModules: Infinity,
     // Display bailout reasons
-    optimizationBailout: true
+    // optimizationBailout: true
   },
   module: {
     rules: [
@@ -245,7 +245,7 @@ module.exports = {
         // 添加dll.js到html中去
         new AddAssetHtmlPlugin({
           filepath: resolve('./dist/dll/vue.dll.js'),
-          publicPath: `${cdn}/dll`
+          publicPath: `${cdn}dll`
         }),
         // dll
         new webpack.DllReferencePlugin({
