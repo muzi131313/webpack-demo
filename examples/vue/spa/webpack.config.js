@@ -9,6 +9,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
 const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const cpusLen = require('os').cpus().length
 
@@ -210,6 +211,7 @@ module.exports = {
       isProd
       // 生产打包模式下的plugins
       ? [
+        new BundleAnalyzerPlugin(),
         // 固定moduleId, 使用文件路径作为id, hash之后作为moduleId
         // NOTE: v4.16.0新配置, 等同于optimization.moduleIds = 'hash'
         new webpack.HashedModuleIdsPlugin(),
