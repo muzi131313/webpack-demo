@@ -1,0 +1,28 @@
+{
+  "name": "txtloader",
+  "version": "1.0.0",
+  "description": "user defined loader",
+  "main": "src/loader.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "webpack",
+    "loader"
+  ],
+  "author": "roastwind",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0",
+    "memory-fs": "^0.4.1",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.9"
+  }
+}
