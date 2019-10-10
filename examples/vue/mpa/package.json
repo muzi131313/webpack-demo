@@ -1,0 +1,16 @@
+{
+  "name": "mpa",
+  "version": "1.0.0",
+  "description": "vue mpa",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vue",
+    "mpa",
+    "webpack"
+  ],
+  "author": "roastwind",
+  "license": "MIT"
+}
