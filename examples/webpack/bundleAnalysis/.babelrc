@@ -1,6 +1,6 @@
 {
   "presets": [
-    ["@babel/env", {
+    [ "@babel/preset-env", {
       // https://babeljs.io/docs/en/babel-preset-env#modules
       // 不转换
       "modules": false,
@@ -8,7 +8,7 @@
       "useBuiltIns": "usage",
       "corejs": 2,
       "shippedProposals": true
-    }]
+    } ]
   ],
   "plugins": [
     "@babel/plugin-syntax-dynamic-import"
