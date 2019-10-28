@@ -1,0 +1,15 @@
+{
+  "name": "mpa",
+  "version": "1.0.0",
+  "description": "webpack mpa",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "webpack",
+    "mpa"
+  ],
+  "author": "roastwind",
+  "license": "MIT"
+}
