@@ -1,0 +1,30 @@
+$browser-default-font-size: 75px
+
+//去掉一个值的单位，如12px => 12
+
+@function strip-units($number)
+    @return $number / ($number * 0 + 1)
+
+@mixin px2rem($property, $values...)
+    $max: length($values);// 返回$values列表的长度值
+    $pxValues: '';
+    $remValues: '';
+
+    // 设置px
+    @for $i from 1 through $max
+        $value: strip-units(nth($values, $i));// 返回$values列表中的第$i个值，并将单位值去掉
+        $browser-default-font-size: strip-units($browser-default-font-size);
+        $pxValues: #{$pxValues + $value * $browser-default-font-size}px;
+        @if $i < $max
+            $pxValues: #{$pxValues + " "};
+
+    // 设置rem
+    @for $i from 1 through $max
+        $value: strip-units(nth($values, $i));
+        $browser-default-font-size: strip-units($browser-default-font-size);
+        $remValues: #{$remValues + ($value / $browser-default-font-size)}rem;
+        @if $i < $max
+            $remValues: #{$remValues + " "};
+
+    // #{$property}: $pxValues
+    #{$property}: $remValues
