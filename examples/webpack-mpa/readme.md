@@ -1,6 +1,9 @@
 ### 本地开发模式
 - 回到项目根目录: `cd ../../`
 - 本地运行: `npx lerna run dev --scope webpack-mpa`
+- 访问:
+  - [main](http://127.0.0.1:8083/main.html/#/)
+  - [sub](http://127.0.0.1:8083/sub.html/#/)
 
 ### 本地线上模式
 - 回到项目根目录: `cd ../../`
