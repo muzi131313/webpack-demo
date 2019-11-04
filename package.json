@@ -1,0 +1,29 @@
+{
+  "name": "webpack-demo",
+  "version": "1.0.0",
+  "description": "webpack examples",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muzi131313/webpack-demo.git"
+  },
+  "keywords": [
+    "webpack",
+    "examples"
+  ],
+  "author": "roastwind",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/muzi131313/webpack-demo/issues"
+  },
+  "homepage": "https://github.com/muzi131313/webpack-demo#readme",
+  "devDependencies": {
+    "lerna": "^3.18.3"
+  }
+}

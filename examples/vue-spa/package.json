@@ -1,5 +1,5 @@
 {
-  "name": "spa",
+  "name": "vue-spa",
   "version": "1.0.0",
   "description": "vue spa",
   "main": "src/main.js",

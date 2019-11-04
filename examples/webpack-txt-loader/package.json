@@ -1,5 +1,5 @@
 {
-  "name": "txtloader",
+  "name": "txt-loader",
   "version": "1.0.0",
   "description": "user defined loader",
   "main": "src/loader.js",

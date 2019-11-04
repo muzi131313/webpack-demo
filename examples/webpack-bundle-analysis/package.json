@@ -1,5 +1,5 @@
 {
-  "name": "bundleanalysis",
+  "name": "bundle-analysis",
   "version": "1.0.0",
   "description": "bundleAnalysis",
   "main": "src/index.js",

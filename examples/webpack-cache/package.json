@@ -1,5 +1,5 @@
 {
-  "name": "commonplugin",
+  "name": "cache",
   "version": "1.0.0",
   "description": "webpack common plugin's usaged demo",
   "main": "src/index.js",
@@ -17,7 +17,9 @@
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",
     "html-webpack-plugin": "^3.2.0",
-    "webpack": "^3.12.0"
+    "inline-manifest-webpack-plugin": "^4.0.2",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
   },
   "dependencies": {
     "lodash": "^4.17.15"

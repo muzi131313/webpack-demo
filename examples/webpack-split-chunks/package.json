@@ -1,5 +1,5 @@
 {
-  "name": "splitchunks",
+  "name": "split-chunks",
   "version": "1.0.0",
   "description": "split chunks",
   "main": "src/index.js",

@@ -1,0 +1,13 @@
+{
+  "version": "3.18.3",
+  "npmClient": "npm",
+  "command": {
+    "bootstrap": {
+      "ignore": "component-*",
+      "npmClientArgs": ["--no-package-lock"]
+    }
+  },
+  "packages": [
+    "examples/*"
+  ]
+}

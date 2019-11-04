@@ -1,5 +1,5 @@
 {
-  "name": "libraryexport",
+  "name": "library-export",
   "version": "1.0.0",
   "description": "webpack about libraryExport's demo",
   "main": "src/index.js",

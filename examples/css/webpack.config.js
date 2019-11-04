@@ -58,7 +58,7 @@ module.exports = {
     // 是否自动打开
     open: true,
     // 端口
-    port: 9000,
+    port: 9002,
     // 服务器本地根目录
     contentBase: resolve('dist')
   }
