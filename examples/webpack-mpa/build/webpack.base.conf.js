@@ -13,7 +13,8 @@ function resolve (dir) {
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    app: './src/main.js'
+    main: './src/pages/main/main.js',
+    sub: './src/pages/sub/main.js'
   },
   output: {
     path: config.build.assetsRoot,
