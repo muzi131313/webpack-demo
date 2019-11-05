@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <h2>{{ from }}</h2>
     <h2>Essential Links</h2>
     <ul>
       <li>
@@ -86,6 +87,9 @@
 <script>
 export default {
   name: 'HelloWorld',
+  props: {
+    from: String
+  },
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
